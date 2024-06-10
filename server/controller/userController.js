@@ -70,3 +70,5 @@ export const login = catchAsyncErrors(async(req, res, next) => {
 })
 export const logout = catchAsyncErrors((req, res, next) => {})
 export const myProfile = catchAsyncErrors((req, res, next) => {})
+
+//i have examas right now so that i'll pause here
