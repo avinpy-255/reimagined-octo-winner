@@ -2,6 +2,7 @@ import {catchAsyncErrors} from '../middlewares/catchAsyncErrors.js'
 import ErrorHandeler from '../middlewares/error.js'
 import cloudinary from 'cloudinary'
 import {User} from '../models/userSchema.js'
+import { senToken } from '../utils/jwtToken.js'
 
 export const register = catchAsyncErrors(async(req, res, next) => {
     if(!req.files || Object.keys(req.files).length === 0){
@@ -44,10 +45,7 @@ export const register = catchAsyncErrors(async(req, res, next) => {
             url: cloudinaryResponse.secure_url,
         }
     })
-    res.status(200).json({
-        success: true,
-        message: "userRegistered"
-    })
+    senToken("user registerd in", user, res, 200)
 })
 export const login = catchAsyncErrors(async(req, res, next) => {
     const {email, password} = req.body;
@@ -62,11 +60,7 @@ export const login = catchAsyncErrors(async(req, res, next) => {
    if(!isPasswordMatched){
     return next(new ErrorHandeler("password not matched", 400));
    }
-    res.status(200).json({
-        success: true,
-        message: "userLoggedIn",
-        user
-    })
+   senToken("user logged in", user, res, 200)
 })
 export const logout = catchAsyncErrors((req, res, next) => {})
 export const myProfile = catchAsyncErrors((req, res, next) => {})
