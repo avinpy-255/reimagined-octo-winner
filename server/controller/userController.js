@@ -73,6 +73,12 @@ export const logout = catchAsyncErrors((req, res, next) => {
         message: "user logged out"
     })
 })
-export const myProfile = catchAsyncErrors((req, res, next) => {})
+export const myProfile = catchAsyncErrors((req, res, next) => {
+    const user = req.user;
+    res.status(200).json({
+        success: true,
+        user,
+    })
+})
 
 //i have examas right now so that i'll pause here
