@@ -50,4 +50,15 @@ export const getMyTask = catchAsyncErrors(async(req,res, next)=>{
         message: "tasks fetched",
     })
 })
-export const getSingleTask = catchAsyncErrors(async(req,res, next)=>{})
+export const getSingleTask = catchAsyncErrors(async(req,res, next)=>{
+    const { id } = req.params;
+    let task = await Task.findById(id);
+    if(!task){
+        return next(new ErrorHandler("task not found", 400));
+    }
+    res.status(200).json({
+        success: true,
+        task,
+        message: "task fetched",
+    })
+})
