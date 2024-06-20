@@ -62,7 +62,17 @@ export const login = catchAsyncErrors(async(req, res, next) => {
    }
    senToken("user logged in", user, res, 200)
 })
-export const logout = catchAsyncErrors((req, res, next) => {})
+export const logout = catchAsyncErrors((req, res, next) => {
+    res.status(200).cookie("token", "", {
+        expires: new Date(
+            Date.now()
+        ),
+        httpOnly: true,
+    }).json({
+        success: true,
+        message: "user logged out"
+    })
+})
 export const myProfile = catchAsyncErrors((req, res, next) => {})
 
 //i have examas right now so that i'll pause here

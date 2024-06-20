@@ -1,5 +1,5 @@
 export const senToken = (message, user, res, statusCode)=> {
-    const token = usergetJWTToken();
+    const token = user.getJWTTokens();
     const options = {
         expires: new Date(
             Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
