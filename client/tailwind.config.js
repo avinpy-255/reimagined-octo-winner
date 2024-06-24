@@ -1,11 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: [
+    './pages/**/*.{html,jsx}',
+    './components/**/*.{html,jsx}',
+  ],
   theme: {
     extend: {},
-  },
-  fontFamily: {
-    body: ['Kanit']
   },
   plugins: [],
 }
